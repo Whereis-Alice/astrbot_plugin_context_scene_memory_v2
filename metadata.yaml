@@ -1,0 +1,43 @@
+name: astrbot_plugin_context_scene_memory
+display_name: 上下文场景记忆增强
+desc: 增强群聊场景理解与上下文连续性，减少抢答、误判和“聊两句就忘”的问题
+help: |
+  这是基于上游项目 muyouzhi6/astrbot_plugin_context_aware 的分叉维护版。
+
+  为避免与上游插件在插件标识、运行时注入标记和后续更新中发生冲突，
+  本分叉版使用了新的插件名称与显示名。
+
+  ⚠️ 重要：安装本插件后，请关闭 AstrBot 内置的「群聊上下文感知(原聊天记忆增强)」功能，
+  否则会导致 LLM 收到两份群聊记录，造成上下文膨胀。
+
+  核心能力：
+  - 记录群聊最近消息，增强上下文连续性
+  - 分析谁在和谁说话，减少 Bot 抢答
+  - 识别 @、回复、唤醒词、主动触发、戳一戳等场景
+  - 同步上游图片上下文、GIF 过滤、语音转写上下文与内置 LTM 警告
+  - 可选图像转述、最近图片提示与历史摘要压缩
+  - 兼容 QQ/NapCat 等平台传入的 base64 data URI 图片，避免图像转述路径过长报错
+  - 可选严格模式：主动/未知触发时减少把群聊误判为对 Bot 说话
+  - 默认使用稳定平台用户 ID（QQ 平台即 QQ 号）标注发送者和接收对象，避免将其他成员的话或 Bot 回复串给当前用户
+  - 可选优化引用回复指向：临时说明引用来源与 Bot 原始回复对象，QQ 官方 Bot 自动跳过
+  - 可配置用户发言归因保护提示词，并支持切换为脱敏身份标签
+  - 可选动态群名片身份提示，缓解“@到动态昵称却被模型当成另一个AI”的误判
+  - 适配 astrbot_plugin_dynamic_card_plus，把当前群名片识别为 Bot 自己
+  - 同步上游低风险修复：@全体识别、撤回异步清理、图像转述缓存过期与取消异常传播
+
+  更详细的来源说明、配置说明和变更记录请查看 README.md 与 CHANGELOG.md。
+version: 3.5.0
+author: Huli3（fork 自 木有知）
+repo: https://github.com/Whereis-Alice/astrbot_plugin_context_scene_memory
+astrbot_version: ">=4.24.0"
+support_platforms:
+  - aiocqhttp
+  - qq_official
+  - telegram
+  - discord
+  - slack
+  - kook
+  - lark
+  - satori
+  - misskey
+  - line
